@@ -21,38 +21,38 @@ public class BookController {
     @GetMapping
     public String getAllBooks(Model model) {
         model.addAttribute("books", bookService.getAllBooks());
-        return "index";  // Убедитесь, что этот шаблон существует
+        return "index"; 
     }
 
     @GetMapping("/add")
     public String showAddForm(Model model) {
         model.addAttribute("book", new Book());
-        return "add-book";  // Убедитесь, что этот шаблон существует
+        return "add-book"; 
     }
 
     @PostMapping
     public String addBook(@ModelAttribute Book book) {
         bookService.saveBook(book);
-        return "redirect:/books";  // Перенаправление на список книг
+        return "redirect:/books"; 
     }
 
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable Long id, Model model) {
         Book book = bookService.getBookById(id);
         model.addAttribute("book", book);
-        return "edit-book";  // Убедитесь, что этот шаблон существует
+        return "edit-book";
     }
 
     @PostMapping("/edit/{id}")
     public String updateBook(@PathVariable Long id, @ModelAttribute Book book) {
         book.setId(id);
         bookService.saveBook(book);
-        return "redirect:/books";  // Перенаправление на список книг
+        return "redirect:/books";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteBook(@PathVariable Long id) {
         bookService.deleteBook(id);
-        return "redirect:/books";  // Перенаправление на список книг
+        return "redirect:/books"; 
     }
 }
